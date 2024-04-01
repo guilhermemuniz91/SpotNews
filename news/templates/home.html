@@ -13,9 +13,11 @@
     </header>
     <main>
         {% for new in news %}
+            <a href="{% url 'news-details-page' new.id %}">
                 <h2 class="news-title">{{ new.title }}</h2>
                 <span class="news-date">{{ new.created_at|date:"d/m/Y" }}</span>
                 <img src="{% static new.image.url %}" alt="{{ new.title }}" height="100">
+            </a>
         {% endfor %}
     </main>
 {% endblock %}
