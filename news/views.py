@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from news.models import News, Category
 from news.forms import CreateCategoriesForm, CreateNewsForm
+from rest_framework import viewsets
+from news.serializers import CategorySerializer
 
 # Create your views here.
 
@@ -59,3 +61,8 @@ def news_form(request):
     context = {"form": form, "categories": Category.objects.all()}
 
     return render(request, "news_form.html", context)
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
